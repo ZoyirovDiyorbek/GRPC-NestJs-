@@ -1,0 +1,71 @@
+syntax="proto3";
+
+package shop;
+
+//CATEGORY
+
+service CategoryService {
+    rpc Create (CategoryDto) returns (Category);
+    rpc FindAll (Empty) returns (CategoryList);
+    rpc FindOne (ById) returns (Category);
+    rpc Update (UpdateCategoryDto) returns (Category);
+    rpc Remove (ById) returns (Category);
+}
+
+message Category {
+    int32 id = 1;
+    string name = 2;
+}
+
+message CategoryList {
+    repeated Category categories = 1;
+}
+
+message CategoryDto {
+    string name = 1;
+}
+
+message UpdateCategoryDto {
+    int32 id = 1;
+    string name = 2;
+}
+
+
+
+
+//PRODUCT   
+service ProductService {
+    rpc Create(ProductDto) returns (Product);
+    rpc FindAll(Empty) returns (ProductList);
+    rpc FindOne(ById) returns (Product);
+    rpc Update(UpdateProductDto) returns (Product);
+    rpc Remove(ById) returns (Product);
+}
+
+message Product {
+    int32 id=1;
+    string name=2;
+    int32 categoryId=3;
+}
+
+message ProductList {
+    repeated Product Products=1;
+}
+
+message ProductDto{
+    int32 id=1;
+    string name=2;
+    int32 categoryId=3;
+}
+
+message ById {
+    int32 id =1;
+}
+
+message UpdateProductDto {
+    int32 id = 1;
+    string name = 2;
+    int32 categoryId = 3;
+}
+
+message Empty {}
